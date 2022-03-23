@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda&family=MuseoModerno:wght@600&family=Roboto:wght@100&display=swap');
+body {
+  margin: 0;
+  font-family:  'Roboto';
+   
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  font-weight: 600;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
