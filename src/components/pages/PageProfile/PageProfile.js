@@ -4,6 +4,7 @@ import "../../usersList/usersList.scss";
 import { useState, useEffect } from "react";
 
 const FormUser = () => {
+  const [ user, setUser ] = useState(null);
   const inputsData = [
     { name: "Name",
       placeholder:'Name'
