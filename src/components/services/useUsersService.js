@@ -5,7 +5,7 @@ const useUsersService = () => {
     const api = 'https://jsonplaceholder.typicode.com/users';
 
     const getAllUsers = async () => {
-        console.log('+')
+        
         const res = await request(api);
         
         return res.map(_tranformUsers);

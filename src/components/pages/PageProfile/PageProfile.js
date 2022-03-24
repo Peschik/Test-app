@@ -35,9 +35,9 @@ const FormUser = () => {
 },
   ];
   
- const inputs = inputsData.map(({name, placeholder}) => {
+ const inputs = inputsData.map(({name, placeholder}, index) => {
      return (
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" key={index + 1}>
             <Form.Label>{name}</Form.Label>
             <Form.Control className={name === 'Comment' ? 'comment-form' : ''} placeholder={placeholder} disabled/>
         </Form.Group>

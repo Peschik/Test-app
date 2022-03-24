@@ -1,25 +1,33 @@
 import './usersList.scss';
-import useUsersService from '../services/useUsersService';
+// import useUsersService from '../services/useUsersService';
 import { useEffect, useState} from 'react';
 
 
-const UsersList = () => {
-    const {getAllUsers} = useUsersService();
+const UsersList = (props) => {
+    const { gotuserslist } = props;
     const [usersList, setUsersList] = useState([]);
 
     useEffect(() => {
-        onRequest();
-        },[])
+        setUsersList(gotuserslist)
+        },)
 
 
-    const onRequest = () => {
-        getAllUsers()
-            .then(onUsersListLoaded)
-    }
+    // const onRequest = () => {
+    //     getAllUsers()
+    //         .then(onUsersListLoaded)
+    // }
 
-    const onUsersListLoaded = async (usersList) => {
-        setUsersList(usersList)
-    }
+
+
+    // const onUsersListLoaded = async (usersList) => {
+    //     const sortedList = usersList.sort((a, b) => {
+    //         if(a.name > b.name) 
+    //             return 1
+    //         if(a.name < b.name)
+    //             return -1
+    //     })
+    //     setUsersList(sortedList)
+    // }
 
     function renderItems(arr) {
         const items =  arr.map((item) => {
@@ -67,7 +75,7 @@ const UsersList = () => {
         <h1 className='mt-4 mb-4 header-list'>Список пользователей</h1>
            {items}
            <div className="total-count">
-                <span className='total mb-4'>Найдено 10 пользователей</span>
+                <span className='total mb-4'>Найдено {usersList.length} пользователей</span>
             </div>
         </div>
       
