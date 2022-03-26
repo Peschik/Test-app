@@ -4,31 +4,12 @@ import { useEffect, useState} from 'react';
 
 
 const UsersList = (props) => {
-    const { gotuserslist } = props;
+    const { gotUsersList } = props;
     const [usersList, setUsersList] = useState([]);
 
     useEffect(() => {
-        setUsersList(gotuserslist)
-        },)
-
-
-    // const onRequest = () => {
-    //     getAllUsers()
-    //         .then(onUsersListLoaded)
-    // }
-
-
-
-    // const onUsersListLoaded = async (usersList) => {
-    //     const sortedList = usersList.sort((a, b) => {
-    //         if(a.name > b.name) 
-    //             return 1
-    //         if(a.name < b.name)
-    //             return -1
-    //     })
-    //     setUsersList(sortedList)
-    // }
-
+        setUsersList(gotUsersList)
+    }, [gotUsersList])
     function renderItems(arr) {
         const items =  arr.map((item) => {
             return (

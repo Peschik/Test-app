@@ -6,36 +6,53 @@ import { useEffect, useState} from 'react';
 
 function App() {
 
-  const {getAllUsers} = useUsersService();
+    const {getAllUsers} = useUsersService();
     const [usersList, setUsersList] = useState([]);
+    const [sortBy, setSortBy] = useState(null);
+
 
     useEffect(() => {
         onRequest();
         },[])
+    
 
+    useEffect(() => {
+      sortPost(usersList, sortBy)
+    }, [sortBy])
 
     const onRequest = () => {
         getAllUsers()
             .then(onUsersListLoaded)
     }
 
+    const sortPost = (items, sortBy) => {
+      setUsersList(sortArray(items, sortBy))
+  }
 
+  const onSortSelect = (sortBy) => {
+      setSortBy(sortBy);
+      
+  }
 
-    const onUsersListLoaded = async (usersList) => {
-        console.log(usersList)
-        const sortedList = usersList.sort((a, b) => {
-            if(a.name > b.name) 
-                return 1
-            if(a.name < b.name)
-                return -1
-        })
-        setUsersList(sortedList)
+  const sortArray = (arr, sortBy) => {
+    const sortedList = arr.sort((a, b) => {
+    if (a[sortBy] > b[sortBy]) {
+      return 1 
     }
+      return -1
+  })
+    return sortedList
+  }
+  
+  const onUsersListLoaded = (usersList) =>  setUsersList(usersList);
+
+  const sortedUsers = sortArray(usersList, sortBy)
+
 
   return (
     <div className="App">
-      <Page content={
-        <UsersList gotuserslist={usersList}/>
+      <Page onSortSelect={onSortSelect} sortBy={sortBy} content={
+        <UsersList gotUsersList={sortedUsers}/>
       } />
       <Page content={
         <PageProfile />
