@@ -33,7 +33,7 @@ const useUsersService = () => {
             username: user.username,
             email: user.email,
             phone: user.phone,
-            zipcode: user.zipcode,
+            zipcode: user.address.zipcode,
             city: user.address.city,
             company: user.company.name,
             street: user.address.street,

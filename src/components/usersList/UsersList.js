@@ -1,46 +1,18 @@
 import './usersList.scss';
+import UserItem from '../userItem/UserItem';
 // import useUsersService from '../services/useUsersService';
-import { useEffect, useState} from 'react';
 
 
-const UsersList = (props) => {
-    const { gotUsersList } = props;
-    const [usersList, setUsersList] = useState([]);
-
-    useEffect(() => {
-        setUsersList(gotUsersList)
-    }, [gotUsersList])
+const UsersList = ({onMoreSelect, gotUsersList}) => {
     function renderItems(arr) {
         const items =  arr.map((item) => {
+            const {id, ...itemProps} = item
             return (
-                <li 
-                    tabIndex={0}
-                    className= {'user-item'}
-                    key={item.id}
-                    // onClick={() => {props.onCharSelected(item.id)}}
-                    // onKeyPress= {(e) => {
-                    //     e.preventDefault()
-                    //     if (e.key === ' ' || e.key === 'Enter') {
-                    //         props.onCharSelected(item.id);
-                    //     }
-                    // }}
-                    >
-                    <p>
-                        <span>ФИО:</span>
-                        {item.name}
-                    </p>
-                    <p>
-                        <span>город:</span>
-                        {item.city}
-                    </p>
-                    <div className="card-bottom">
-                        <p>
-                            <span>компания:</span>
-                            {item.company}
-                        </p>
-                        <a href='...'>Подробнее</a>
-                    </div>   
-                </li>
+                <UserItem
+                    key={id}
+                    onMoreSelect={() => onMoreSelect(id)}
+                    {...itemProps}
+                />
             )
         });
         return (
@@ -49,14 +21,14 @@ const UsersList = (props) => {
             </ul>
         )
     }
-    const items = renderItems(usersList);
+    const items = renderItems(gotUsersList);
    
     return (
         <div className='list-container'>
         <h1 className='mt-4 mb-4 header-list'>Список пользователей</h1>
            {items}
            <div className="total-count">
-                <span className='total mb-4'>Найдено {usersList.length} пользователей</span>
+                <span className='total mb-4'>Найдено {gotUsersList.length} пользователей</span>
             </div>
         </div>
       
